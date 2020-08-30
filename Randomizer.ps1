@@ -13,6 +13,7 @@ function Randomize {
     #it shows the output in the label
 
     switch ($gameList.SelectedItem) {
+      
     }
 
     $resultBox.text = $randomResult.ToString()
@@ -72,14 +73,7 @@ function buildDropDownList {
     $Lists | ForEach-Object {[void] $gameList.Items.Add($_)}
 }
 
-function ModifyList2 {
-    Write-Host "Fucking Horse Shit"
-    Get-Content "C:\users\demon\appdata\Roaming\Randomizer\1234.txt"
-    ModifyList
-}
-
 function ModifyList {
-    Get-Content -Path "C:\users\demon\appdata\Roaming\Randomizer\1234.txt"
     $modifyListBox = New-Object System.Windows.Forms.Form
     $modifyListBox.clientSize = "500,500"
     $modifyListBox.Text = "Update Game List"
@@ -87,6 +81,10 @@ function ModifyList {
 
     $modifyListItems = New-Object System.Windows.Forms.ListBox
     $modifyListItems.Location = New-Object System.Drawing.Point(250,250)
+
+    $currentItem = $gameList.SelectedItem
+    $fullPath = "$installPath\$currentItem.txt"
+    Get-Content -Path $fullPath
 
     $modifyListBox.controls.AddRange(@($modifyListItems))
     $modifyListBox.ShowDialog()
@@ -135,7 +133,7 @@ $newListButton.Add_Click({NewList})
 $modifyListButton                 = New-Object System.Windows.Forms.Button
 $modifyListButton.Text = "Modify List"
 $modifyListButton.Location = New-Object System.Drawing.Point (200,70)
-$modifyListButton.Add_Click({ModifyList2})
+$modifyListButton.Add_Click({ModifyList})
 
 #We are going to show the results here later
 $resultBox                  = New-Object System.Windows.Forms.Label
