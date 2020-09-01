@@ -13,7 +13,9 @@ function Randomize {
     #it shows the output in the label
 
     switch ($gameList.SelectedItem) {
-      
+      "Placeholder"{
+
+      }
     }
 
     $resultBox.text = $randomResult.ToString()
